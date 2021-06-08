@@ -25,7 +25,7 @@ on:
   published:
     branches:
       - master
-  synchronize:
+  sync:
     branches:
       - master
 

@@ -56,17 +56,10 @@ jobs:
     needs: release
     runs-on: ubuntu-latest
     steps:
-    - name: push master
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add .
-        git commit -m "sync master" -a
-        git push origin master
-    # - uses: actions/checkout@v2
-    # - name: Sync master from detached head
-    #   # If version matches CHANGELOG and pyproject.toml
-    #   # If it passes all checks, successfully releases to test and prod
-    #   # Then sync up master with latest source code release
-    #   # where commit message will be Release notes title
-    #   run: git push origin HEAD:refs/heads/master --force
+    - uses: actions/checkout@v2
+    - name: Sync master from detached head
+      # If version matches CHANGELOG and pyproject.toml
+      # If it passes all checks, successfully releases to test and prod
+      # Then sync up master with latest source code release
+      # where commit message will be Release notes title
+      run: git push origin HEAD:refs/heads/master --force
