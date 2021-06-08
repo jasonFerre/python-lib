@@ -1,20 +1,21 @@
 [tool.poetry]
 name = "druid_libs"
-version = "0.1.1"
-description = ""
+version = "0.1.2"
+description = "Python utilities fro Druid projects"
 authors = ["Druid"]
 maintainers = ["Geyson <geyson.ferreira@druid.com>"]
 license = "MIT"
 readme = "README.md"
 homepage = "https://github.com/jasonFerre/python-lib"
-repository = "https://github.com/jasonFerre/python-lib"
+repository = "https://github.com/jasonFerre/python-lib.git"
 documentation = "https://github.com/jasonFerre/python-lib"
 keywords = [
     "Poetry",
     "Virtual Environments",
     "Tutorial",
     "Packages",
-    "Packaging"
+    "Packaging",
+    "Druid"
 ]
 
 [tool.poetry.dependencies]
