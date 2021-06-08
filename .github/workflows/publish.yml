@@ -26,7 +26,7 @@ name: Publish to PyPi
 on:
   push:
     branches:
-      - master
+      - release
 
 jobs:
   release:
