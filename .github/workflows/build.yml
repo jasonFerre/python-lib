@@ -35,9 +35,10 @@ jobs:
   build:
     runs-on: ${{ matrix.os }}
     strategy:
+      max-parallel: 2
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-        python-version: [3.7, 3.8, 3.9]
+        os: ${{ matrix.os }}
+        python-version: [3.8, 3.9]
     steps:
     - uses: actions/checkout@v2
       with:
@@ -46,21 +47,32 @@ jobs:
       uses: actions/setup-python@v1
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Set release notes tag
-      run: |
-        export RELEASE_TAG_VERSION=${{ github.event.release.tag_name }}
-        echo "RELEASE_TAG_VERSION=${RELEASE_TAG_VERSION:1}" >> $GITHUB_ENV
-    # - name: Ensure new version is also set in pyproject and CHANGELOG
-    #   run: |
-    #     grep --regexp "\[${RELEASE_TAG_VERSION}\]" CHANGELOG.md
-    #     grep --regexp "version \= \"${RELEASE_TAG_VERSION}\"" pyproject.toml
     - name: Install dependencies
       run: make install
     - name: Run all tests, linting and baselines
       run: make test
-    
+  release:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      max-parallel: 1
+      matrix:
+        os: ${{ matrix.os }}
+        python-version: [3.7]
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v1
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: make install
+    - name: Run all tests, linting and baselines
+      run: make test
+
   sync_master:
-    needs: build
+    needs: release
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
