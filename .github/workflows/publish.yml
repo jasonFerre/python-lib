@@ -67,7 +67,7 @@ jobs:
         PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
     
   sync_master:
-    needs: release
+    needs: build
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
