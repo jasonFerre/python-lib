@@ -1,5 +1,5 @@
 # Druid Libs 
-![PythonSupport](https://img.shields.io/static/v1?label=python&message=3.6%20|%203.7|%203.8&color=blue?style=flat-square&logo=python) ![PyPI version](https://badge.fury.io/py/druid-libs.svg) ![PyPi monthly downloads](https://img.shields.io/pypi/dm/python-lib)
+![PythonSupport](https://img.shields.io/static/v1?label=python&message=3.6%20|%203.7|%203.8&color=blue?style=flat-square&logo=python) ![PyPI version](https://badge.fury.io/py/python-lib.svg) ![PyPi monthly downloads](https://img.shields.io/pypi/dm/python-lib)
 
 A suite of Python utilities to ease adopting best practices such as test mock lambda functions.
 
