@@ -1,4 +1,3 @@
-
 from typing import Optional
 
 
@@ -52,8 +51,12 @@ class FakeEvent:
                 "Host": ["qxdb8jvno4.execute-api.us-east-1.amazonaws.com"],
                 "Postman-Token": ["e8531730-a73f-4c6a-ade2-e90a9151f78d"],
                 "User-Agent": ["PostmanRuntime/7.26.8"],
-                "Via": ["1.1 500f59fe7e67ec25b5c0692f11203995.cloudfront.net (CloudFront)"],
-                "X-Amz-Cf-Id": ["nIeXAosYYVyqR_2-j1OfuAQW4W0Y8JjITxmXGe3XZ55AJwyy7fj8Vw=="],
+                "Via": [
+                    "1.1 500f59fe7e67ec25b5c0692f11203995.cloudfront.net (CloudFront)"
+                ],
+                "X-Amz-Cf-Id": [
+                    "nIeXAosYYVyqR_2-j1OfuAQW4W0Y8JjITxmXGe3XZ55AJwyy7fj8Vw=="
+                ],
                 "x-amz-date": ["20210511T144925Z"],
                 "X-Amzn-Trace-Id": ["Root=1-609a9974-39c9cddc0e4fe38d7334b081"],
                 "X-Forwarded-For": ["201.95.56.60, 130.176.40.157"],

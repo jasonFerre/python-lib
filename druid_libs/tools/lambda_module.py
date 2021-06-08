@@ -1,7 +1,8 @@
 import importlib
 import os
 import sys
-from .fake_context import FakeContext 
+
+from .fake_context import FakeContext
 
 
 class lambdaModule:
@@ -26,8 +27,9 @@ class lambdaModule:
             os.environ[key] = value
 
         # Add path for Lambda function
-        # sys.path.insert(0, os.path.join(os.environ["BASEDIR"], "src", request.param["function_dir"]))
-        sys.path.insert(0, os.path.dirname(os.path.abspath(request.param["module_name"])))
+        sys.path.insert(
+            0, os.path.dirname(os.path.abspath(request.param["module_name"]))
+        )
 
         # Save the list of previously loaded modules
         prev_modules = list(sys.modules.keys())
