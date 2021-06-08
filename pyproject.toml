@@ -2,7 +2,7 @@
 name = "druid_libs"
 version = "0.1.0"
 description = ""
-authors = ["geyson"]
+authors = ["Druid"]
 maintainers = ["Geyson <geyson.ferreira@druid.com>"]
 license = "MIT"
 readme = "README.md"

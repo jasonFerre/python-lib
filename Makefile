@@ -15,6 +15,8 @@ lint: format
 build:
 	poetry build
 
+pr: test lint build
+
 release-prod:
 	poetry config pypi-token.pypi ${PYPI_TOKEN}
 	poetry publish -n
