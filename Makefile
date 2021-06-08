@@ -15,6 +15,9 @@ lint: format
 build:
 	poetry build
 
+version:
+	poetry version patch
+
 pr: test lint build
 
 release-prod:

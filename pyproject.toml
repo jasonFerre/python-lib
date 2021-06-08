@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "druid_libs"
-version = "0.1.4"
+version = "0.1.6"
 description = "Python utilities fro Druid projects"
 authors = ["Druid"]
 maintainers = ["Geyson <geyson.ferreira@druid.com>"]
@@ -19,7 +19,7 @@ keywords = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.6"
+python = "^3.7"
 
 [tool.poetry.dev-dependencies]
 coverage = {extras = ["toml"], version = "^5.5"}

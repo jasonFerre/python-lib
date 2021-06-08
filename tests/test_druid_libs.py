@@ -1,2 +1,5 @@
+from druid_libs import __version__
+
+
 def test_version():
-    assert 2 == 2
+    assert __version__ == "0.1.6"
