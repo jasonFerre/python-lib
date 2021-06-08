@@ -22,9 +22,6 @@ on:
   pull_request:
     branches:
       - master
-  sync:
-    branches:
-      - master
 
 jobs:
   release:
