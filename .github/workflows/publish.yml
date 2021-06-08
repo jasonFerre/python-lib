@@ -19,6 +19,9 @@ on:
   push:
     branches:
       - master
+  pull_request:
+    branches:
+      - release
 
 jobs:
   release:
