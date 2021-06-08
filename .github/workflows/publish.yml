@@ -22,9 +22,6 @@ on:
   pull_request:
     branches:
       - master
-  published:
-    branches:
-      - master
   sync:
     branches:
       - master
