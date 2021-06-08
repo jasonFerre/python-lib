@@ -35,10 +35,12 @@ jobs:
   build:
     runs-on: ${{ matrix.os }}
     strategy:
-      max-parallel: 2
+      max-parallel: 4
       matrix:
-        os: ${{ matrix.os }}
         python-version: [3.8, 3.9]
+    env:
+      OS: ${{ matrix.os }}
+      PYTHON: ${{ matrix.python-version }}
     steps:
     - uses: actions/checkout@v2
       with:
@@ -56,8 +58,10 @@ jobs:
     strategy:
       max-parallel: 1
       matrix:
-        os: ${{ matrix.os }}
         python-version: [3.7]
+    env:
+      OS: ${{ matrix.os }}
+      PYTHON: ${{ matrix.python-version }}
     steps:
     - uses: actions/checkout@v2
       with:
