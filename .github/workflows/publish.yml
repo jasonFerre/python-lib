@@ -16,11 +16,11 @@ name: Publish to PyPi
 # 10. Builds latest documentation for new release, and update latest alias pointing to the new release tag
 
 on:
-  push:
-    branches:
-      - master
   pull_request:
     types: [assigned, opened, synchronize, reopened]
+    branches:
+      - master
+  push:
     branches:
       - master
 
