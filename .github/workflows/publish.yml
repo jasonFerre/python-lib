@@ -20,9 +20,9 @@ on:
     branches:
       - master
   pull_request:
+    types: [assigned, opened, synchronize, reopened]
     branches:
       - master
-  workflow_dispatch: {}
 
 jobs:
   release:
