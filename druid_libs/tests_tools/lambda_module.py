@@ -5,7 +5,7 @@ import sys
 from .fake_context import FakeContext
 
 
-class lambdaModule:
+class LambdaModule:
     def __init__(self) -> None:
         pass
 
