@@ -2,14 +2,6 @@ name: Publish to PyPi
 
 # RELEASE PROCESS
 #
-# === Manual activities ===
-#
-# 1. Document human readable changes in CHANGELOG
-# 2. Bump package version using poetry version <major|minor|patch|specific version>
-# 3. Merge version changes to develop branch
-# 4. Edit the current draft release notes
-# 5. If not already set, use `v<new version>` as a tag, and select develop as target branch
-#
 # === Automated activities ===
 #
 # 1. Extract release notes tag that was published
@@ -26,38 +18,51 @@ name: Publish to PyPi
 on:
   push:
     branches:
-      - release
-  pull_request:
-    branches:
-      - release
+      - master
 
 jobs:
-  build:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-        python-version: [3.7, 3.8, 3.9]
+  release:
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0
-    - name: Set up Python ${{ matrix.python-version }}
+    - name: Set up Python
       uses: actions/setup-python@v1
       with:
-        python-version: ${{ matrix.python-version }}
-    - name: Set release notes tag
-      run: |
-        export RELEASE_TAG_VERSION=${{ github.event.release.tag_name }}
-        echo "RELEASE_TAG_VERSION=${RELEASE_TAG_VERSION:1}" >> $GITHUB_ENV
-    # - name: Ensure new version is also set in pyproject and CHANGELOG
-    #   run: |
-    #     grep --regexp "\[${RELEASE_TAG_VERSION}\]" CHANGELOG.md
-    #     grep --regexp "version \= \"${RELEASE_TAG_VERSION}\"" pyproject.toml
+        python-version: "3.7"
     - name: Install dependencies
       run: make install
     - name: Run all tests, linting and baselines
       run: make test
+    - name: checkout
+      uses: actions/checkout@master
+    - name: Bump version and tagging and publish
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git pull origin master
+        poetry run semantic-release version
+        poetry version $(grep "version" */__init__.py | cut -d "'" -f 2 | cut -d '"' -f 2)
+        git commit -m "Bump versions" -a
+    - name: Push package version changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Get release tag version from package version
+      run: |
+        echo ::set-output name=release_tag::$(grep "version" */__init__.py | cut -d "'" -f 2 | cut -d '"' -f 2)
+      id: release
+    - name: Create Release with new version
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ steps.release.outputs.release_tag }}
+        release_name: ${{ steps.release.outputs.release_tag }}
+        draft: false
+        prerelease: false
     - name: Build python package and wheel
       run: make build
     - name: Upload to PyPi prod
@@ -65,15 +70,3 @@ jobs:
       env:
         PYPI_USERNAME: __token__
         PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
-    
-  sync_master:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Sync master from detached head
-      # If version matches CHANGELOG and pyproject.toml
-      # If it passes all checks, successfully releases to test and prod
-      # Then sync up master with latest source code release
-      # where commit message will be Release notes title
-      run: git push origin HEAD:refs/heads/master --force
