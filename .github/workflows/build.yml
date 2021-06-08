@@ -52,14 +52,14 @@ jobs:
     - name: Run all tests, linting and baselines
       run: make test
 
-  sync_master:
-    needs: release
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Sync master from detached head
-      # If version matches CHANGELOG and pyproject.toml
-      # If it passes all checks, successfully releases to test and prod
-      # Then sync up master with latest source code release
-      # where commit message will be Release notes title
-      run: git push origin HEAD:refs/heads/master --force
+  # sync_master:
+  #   needs: release
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - uses: actions/checkout@v2
+  #   - name: Sync master from detached head
+  #     # If version matches CHANGELOG and pyproject.toml
+  #     # If it passes all checks, successfully releases to test and prod
+  #     # Then sync up master with latest source code release
+  #     # where commit message will be Release notes title
+  #     run: git push origin HEAD:refs/heads/master --force
