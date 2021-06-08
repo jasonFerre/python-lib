@@ -1,25 +1,6 @@
 name: Publish to PyPi
 
-# RELEASE PROCESS
-#
-# === Automated activities ===
-#
-# 1. Extract release notes tag that was published
-# 2. Ensure release notes tag match what's in CHANGELOG and pyproject
-# 3. Run tests, linting, security and complexity base line
-# 4. Publish package to PyPi test repository
-# 5. Publish package to PyPi prod repository
-# 6. Kick off Lambda Layer pipeline to publish latest version with minimal dependencies as a SAR App
-# 7. Kick off Lambda Layer pipeline to publish latest version with extra dependencies as a SAR App
-# 8. Builds a fresh version of docs including Changelog updates
-# 9. Push latest release source code to master using release title as the commit message
-# 10. Builds latest documentation for new release, and update latest alias pointing to the new release tag
-
 on:
-  pull_request:
-    types: [assigned, opened, synchronize, reopened]
-    branches:
-      - master
   push:
     branches:
       - master
