@@ -1,0 +1,37 @@
+[tool.poetry]
+name = "sum_numbers_lib"
+version = "0.1.0"
+description = ""
+authors = ["geyson"]
+maintainers = ["Todd Birchard <toddbirchard@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/jasonFerre/python-lib"
+repository = "https://github.com/jasonFerre/python-lib"
+documentation = "https://github.com/jasonFerre/python-lib"
+keywords = [
+    "Poetry",
+    "Virtual Environments",
+    "Tutorial",
+    "Packages",
+    "Packaging"
+]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -vv"
+testpaths = "./tests"
+log_cli = true
+log_cli_level = "INFO"
+log_cli_format = "%(asctime)s [%(levelname)8s] %(message)s (%(filename)s:%(lineno)s)"
+log_cli_date_format = "%Y-%m-%d %H:%M:%S"
