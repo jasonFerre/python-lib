@@ -1,8 +1,16 @@
 install:
+	pip install --upgrade pip poetry
 	poetry install
 
-run-tests:
+test:
 	poetry run pytest
+
+format:
+	poetry run isort .
+	poetry run black .
+
+lint: format
+	poetry run flake8 
 
 build:
 	poetry build
