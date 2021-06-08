@@ -1,4 +1,4 @@
-name: Publish to PyPi
+name: build
 
 # RELEASE PROCESS
 #
@@ -33,7 +33,7 @@ on:
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     strategy:
       max-parallel: 4
       matrix:
