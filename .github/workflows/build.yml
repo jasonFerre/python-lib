@@ -54,7 +54,7 @@ jobs:
     - name: Run all tests, linting and baselines
       run: make test
   release:
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     strategy:
       max-parallel: 1
       matrix:
