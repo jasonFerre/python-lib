@@ -5,16 +5,16 @@ class FakeEvent:
     def __init__(self) -> None:
         pass
 
-    def proxy_api_event(
-        resource: str = "/",
-        path: str = "/",
-        method: str = "GET",
-        body: Optional[str] = None,
-        iam: Optional[str] = None,
-        cognito: Optional[str] = None,
-        path_params: Optional[dict] = None,
-        query_params: Optional[dict] = None,
-    ):
+    def proxy_api_event(self,
+                        resource: str = "/",
+                        path: str = "/",
+                        method: str = "GET",
+                        body: Optional[str] = None,
+                        iam: Optional[str] = None,
+                        cognito: Optional[str] = None,
+                        path_params: Optional[dict] = None,
+                        query_params: Optional[dict] = None,
+                        ):
         return {
             "resource": resource,
             "path": path,

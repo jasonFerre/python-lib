@@ -9,7 +9,7 @@ class LambdaModule:
     def __init__(self) -> None:
         pass
 
-    def context():
+    def context(self):
         """
         Return a fake Lambda context object
         To use this within a test module, do:
@@ -18,7 +18,7 @@ class LambdaModule:
         """
         return FakeContext()
 
-    def lambda_module(request):
+    def lambda_module(self, request):
         # Inject environment variables
         backup_environ = {}
         for key, value in request.param.get("environ", {}).items():
