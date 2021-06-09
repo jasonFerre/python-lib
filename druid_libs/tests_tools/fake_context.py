@@ -1,4 +1,7 @@
 class FakeContext:
+    def __init__(self) -> None:
+        pass
+
     function_name = "FUNCTION_NAME"
     memory_limit_in_mb = 1024
     invoked_function_arn = "INVOKED_FUNCTION_ARN"
