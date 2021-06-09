@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "druid_libs"
-version = "0.1.9"
+version = "0.1.10"
 description = "Python utilities for Druid projects"
 authors = ["Druid"]
 maintainers = ["Geyson <geyson.ferreira@druid.com>"]
