@@ -2,8 +2,6 @@ import importlib
 import os
 import sys
 
-from .fake_context import FakeContext
-
 
 class LambdaModule:
     def __init__(self) -> None:
